@@ -7,6 +7,7 @@ import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.components.LineComponent;
+import net.runelite.client.ui.overlay.components.TitleComponent;
 
 public class TempleTrekkingOverlayPanel extends OverlayPanel
 {
@@ -24,7 +25,8 @@ public class TempleTrekkingOverlayPanel extends OverlayPanel
 
 	private void addTextToOverlayPanel(String text)
 	{
-		panelComponent.getChildren().add(LineComponent.builder().left(text).build());
+		LineComponent l = LineComponent.builder().left(text).build();
+		panelComponent.getChildren().add(l);
 	}
 
 	@Override
@@ -35,8 +37,9 @@ public class TempleTrekkingOverlayPanel extends OverlayPanel
 		int currentPoints = plugin.getCurrentPoints();
 		int lastPoints = plugin.getLastPoints();
 
-		addTextToOverlayPanel("Current points: " + currentPoints);
-		addTextToOverlayPanel("Last round points: " + lastPoints);
+		panelComponent.getChildren().add(TitleComponent.builder().text("Temple Trekking Points").build());
+		addTextToOverlayPanel("Current: " + currentPoints);
+		addTextToOverlayPanel("Last round: " + lastPoints);
 		return super.render(graphics);
 	}
 
